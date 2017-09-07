@@ -55,7 +55,7 @@ per_marlowe = findper(marlowe)
 letters_per_word = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 
-graphdict = {'letters per word': letters_per_word, 'percent of total words': per_shakes, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare']}
+graphdict = {'letters per word': letters_per_word + letters_per_word + letters_per_word, 'percent of total words': per_shakes + per_leir + per_marlowe, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe']}
 
 # the dataframe
 
