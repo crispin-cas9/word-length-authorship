@@ -35,7 +35,7 @@ def findper(text):
 		length = len(word)
 		numlist.append(length)
 
-	for x in range(13):
+	for x in range(12): # should be 13. delete the zeroth one
 		howmany = numlist.count(x)
 		lenlist.append(howmany)
 
@@ -53,9 +53,9 @@ per_marlowe = findper(marlowe)
 letters_per_word = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 
-# graphdict = {'letters per word': ['1', '3'], 'percent of total words': ['1', '2'], 'author': ['2', '4']}
+graphdict = {'letters per word': letters_per_word, 'percent of total words': per_shakes, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare']}
 
-# print(pd.DataFrame(graphdict))
+print(pd.DataFrame(graphdict))
 
 
 

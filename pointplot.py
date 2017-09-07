@@ -1,9 +1,5 @@
-"""
-Plotting a three-way ANOVA
-==========================
+# the graph
 
-_thumb: .42, .5
-"""
 import seaborn as sns
 import matplotlib.pyplot as plt
 sns.set(style="whitegrid")
