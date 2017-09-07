@@ -17,3 +17,5 @@ g = sns.factorplot(x="time", y="pulse", hue="kind", data=df,
 g.despine(left=True)
 
 plt.show()
+
+# in the final -- x = "letters per word", y = "percent of total words", hue = "author"
