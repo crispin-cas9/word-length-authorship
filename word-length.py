@@ -35,9 +35,11 @@ def findper(text):
 		length = len(word)
 		numlist.append(length)
 
-	for x in range(12): # should be 13. delete the zeroth one
+	for x in range(13):
 		howmany = numlist.count(x)
 		lenlist.append(howmany)
+	
+	del lenlist[0]
 
 	for n in lenlist:
 		divide = float(n) / float(sum(lenlist))
@@ -55,7 +57,18 @@ letters_per_word = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 graphdict = {'letters per word': letters_per_word, 'percent of total words': per_shakes, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare']}
 
-print(pd.DataFrame(graphdict))
+# the dataframe
+
+graphdf = pd.DataFrame(graphdict)
+
+# the graph
+
+sns.set(style="whitegrid")
+
+g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="YlGnBu_d", size=6, aspect=.9)
+g.despine(left=True)
+
+plt.show()
 
 
 
