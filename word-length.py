@@ -10,8 +10,9 @@ import matplotlib.pyplot as plt
 
 shakes = urllib2.urlopen("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt")
 leir = open ('data/leir.txt')
-marlowe = open ('data/marlowe.txt') # REMOVE ALL NUMBERS
+marlowe = open ('data/marlowe.txt')
 test = open ('data/test.txt')
+finley = open ('data/finley.txt')
 
 def strip(text):
 	rawdata = text.read().lower()
@@ -51,11 +52,12 @@ def findper(text):
 per_shakes = findper(shakes)
 per_leir = findper(leir)
 per_marlowe = findper(marlowe)
+per_finley = findper(finley)
 
 letters_per_word = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 
-graphdict = {'letters per word': letters_per_word + letters_per_word + letters_per_word, 'percent of total words': per_shakes + per_leir + per_marlowe, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe']}
+graphdict = {'letters per word': letters_per_word + letters_per_word + letters_per_word + letters_per_word, 'percent of total words': per_shakes + per_leir + per_marlowe + per_finley, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley']}
 
 # the dataframe
 
@@ -65,7 +67,7 @@ graphdf = pd.DataFrame(graphdict)
 
 sns.set(style="whitegrid")
 
-g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="YlGnBu_d", size=6, aspect=.9)
+g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=6, aspect=.9)
 g.despine(left=True)
 
 plt.show()
