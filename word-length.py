@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 
 shakes = urllib2.urlopen("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt")
 leir = open ('data/leir.txt')
-marlowe = open ('data/faustus.txt')
+marlowe = open ('data/marlowe.txt') # REMOVE ALL NUMBERS
 test = open ('data/test.txt')
 
 def strip(text):
 	rawdata = text.read().lower()
-	data = re.findall(r"[\w']+", rawdata)
+	data = re.findall(r"[a-zA-Z']+", rawdata)
 	return data
 
 
