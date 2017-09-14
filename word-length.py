@@ -8,11 +8,14 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-shakes = urllib2.urlopen("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt")
+shakesall = urllib2.urlopen("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt")
+shakes = open ('data/shakes.txt')
 leir = open ('data/leir.txt')
 marlowe = open ('data/marlowe.txt')
 test = open ('data/test.txt')
 finley = open ('data/finley.txt')
+wilkins = open ('data/wilkins.txt')
+pericles = open ('data/pericleshalf.txt')
 
 def strip(text):
 	rawdata = text.read().lower()
@@ -49,15 +52,27 @@ def findper(text):
 	
 	return perlist
 
+
+# for each new author added: add a variable for the findper output of the text, a number to "range," the author name to "authorlist," the findper variable to percenttotal
+
 per_shakes = findper(shakes)
 per_leir = findper(leir)
 per_marlowe = findper(marlowe)
 per_finley = findper(finley)
+per_wilkins = findper(wilkins)
+per_pericles = findper(pericles)
 
-letters_per_word = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+letters_per_word = []
+authorlist = []
 
+for x in range(6):
+	letters_per_word = letters_per_word + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-graphdict = {'letters per word': letters_per_word + letters_per_word + letters_per_word + letters_per_word, 'percent of total words': per_shakes + per_leir + per_marlowe + per_finley, 'author': ['Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Shakespeare', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Anon', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Marlowe', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley', 'Finley']}
+authorlist = ['Shakespeare' for x in range(12)] + ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Wilkins - Pericles' for x in range(12)]
+
+percenttotal = per_shakes + per_leir + per_marlowe + per_finley + per_wilkins + per_pericles
+
+graphdict = {'letters per word': letters_per_word, 'percent of total words': percenttotal, 'author': authorlist}
 
 # the dataframe
 
@@ -67,7 +82,7 @@ graphdf = pd.DataFrame(graphdict)
 
 sns.set(style="whitegrid")
 
-g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=6, aspect=.9)
+g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=8, aspect=.9)
 g.despine(left=True)
 
 plt.show()
