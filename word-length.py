@@ -16,12 +16,15 @@ test = open ('data/test.txt')
 finley = open ('data/finley.txt')
 wilkins = open ('data/wilkins.txt')
 pericles = open ('data/pericleshalf.txt')
+bacon = open ('data/bacon.txt')
 
 def strip(text):
-	rawdata = text.read().lower()
+	rawdata = text.read()
+	#nocaps = rawdata
 	data = re.findall(r"[a-zA-Z']+", rawdata)
 	return data
 
+# match all words with 1 or more caps: [A-Z]{2}[A-Z]*
 
 # in findper:
 # numlist is the list of word lengths. lenlist is how many words have a certain length. the second value in this list is how many words are 1 letter long, the third value is how many words are 2 letters long, etc
@@ -53,7 +56,7 @@ def findper(text):
 	return perlist
 
 
-# for each new author added: add a variable for the findper output of the text, a number to "range," the author name to "authorlist," the findper variable to percenttotal
+# for each new author added: add a variable for the findper output of the text, a number to "range," the author name to "authorlist," the findper variable to percenttotal, categories
 
 per_shakes = findper(shakes)
 per_leir = findper(leir)
@@ -61,18 +64,21 @@ per_marlowe = findper(marlowe)
 per_finley = findper(finley)
 per_wilkins = findper(wilkins)
 per_pericles = findper(pericles)
+per_bacon = findper(bacon)
 
 letters_per_word = []
 authorlist = []
 
-for x in range(6):
+for x in range(8):
 	letters_per_word = letters_per_word + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-authorlist = ['Shakespeare' for x in range(12)] + ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Wilkins - Pericles' for x in range(12)]
+authorlist = ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Bacon' for x in range(12)] + ['Shakespeare' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Wilkins - Pericles' for x in range(12)] + ['Shakespeare' for x in range(12)]
 
-percenttotal = per_shakes + per_leir + per_marlowe + per_finley + per_wilkins + per_pericles
+percenttotal = per_leir + per_marlowe + per_finley + per_bacon + per_shakes + per_wilkins + per_pericles + per_shakes
 
-graphdict = {'letters per word': letters_per_word, 'percent of total words': percenttotal, 'author': authorlist}
+categories = ['Other Authors' for x in range(60)] + ['Pericles' for x in range(36)]
+
+graphdict = {'letters per word': letters_per_word, 'percent of total words': percenttotal, 'author': authorlist, 'category': categories}
 
 # the dataframe
 
@@ -82,7 +88,7 @@ graphdf = pd.DataFrame(graphdict)
 
 sns.set(style="whitegrid")
 
-g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=8, aspect=.9)
+g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=8, aspect=.9, col="category")
 g.despine(left=True)
 
 plt.show()
