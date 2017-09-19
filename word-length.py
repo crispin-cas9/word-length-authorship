@@ -20,8 +20,8 @@ bacon = open ('data/bacon.txt')
 
 def strip(text):
 	rawdata = text.read()
-	#nocaps = rawdata
-	data = re.findall(r"[a-zA-Z']+", rawdata)
+	data = re.sub(r"[A-Z]{2}[A-Z]*", ' ', rawdata)
+	data = re.findall(r"[a-zA-Z']+", data)
 	return data
 
 # match all words with 1 or more caps: [A-Z]{2}[A-Z]*
