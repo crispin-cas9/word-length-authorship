@@ -17,6 +17,7 @@ finley = open ('data/finley.txt')
 wilkins = open ('data/wilkins.txt')
 pericles = open ('data/pericleshalf.txt')
 bacon = open ('data/bacon.txt')
+oxford = open ('data/oxford.txt')
 
 def strip(text):
 	rawdata = text.read()
@@ -65,18 +66,19 @@ per_finley = findper(finley)
 per_wilkins = findper(wilkins)
 per_pericles = findper(pericles)
 per_bacon = findper(bacon)
+per_oxford = findper(oxford)
 
 letters_per_word = []
 authorlist = []
 
-for x in range(8):
+for x in range(9):
 	letters_per_word = letters_per_word + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-authorlist = ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Bacon' for x in range(12)] + ['Shakespeare' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Wilkins - Pericles' for x in range(12)] + ['Shakespeare' for x in range(12)]
+authorlist = ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Bacon' for x in range(12)] + ['Earl of Oxford' for x in range(12)] + ['Shakespeare' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Wilkins - Pericles' for x in range(12)] + ['Shakespeare' for x in range(12)]
 
-percenttotal = per_leir + per_marlowe + per_finley + per_bacon + per_shakes + per_wilkins + per_pericles + per_shakes
+percenttotal = per_leir + per_marlowe + per_finley + per_bacon + per_oxford + per_shakes + per_wilkins + per_pericles + per_shakes
 
-categories = ['Other Authors' for x in range(60)] + ['Pericles' for x in range(36)]
+categories = ['Other Authors' for x in range(72)] + ['Pericles' for x in range(36)]
 
 graphdict = {'letters per word': letters_per_word, 'percent of total words': percenttotal, 'author': authorlist, 'category': categories}
 
