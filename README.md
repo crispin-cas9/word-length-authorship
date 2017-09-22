@@ -2,7 +2,11 @@
 
 Based on a technique by TC Mendenhall.
 
-Data sources:
+Disclaimer: This algorithm isn't an accurate method of determining authorship, since the output varies greatly between verse and prose. However, it's still pretty interesting to compare different authors in this way, and the method does have some merits.
+
+Required libraries: numpy, pandas, matplotlib, seaborn
+
+# Data sources
 
 http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt
 
@@ -19,5 +23,3 @@ http://www.gutenberg.org/files/1962/1962-h/1962-h.htm
 http://www.gutenberg.org/ebooks/author/296
 
 https://en.wikipedia.org/wiki/Edward_de_Vere,_17th_Earl_of_Oxford#Literary_reputation
-
-Required libraries: numpy, pandas, matplotlib, seaborn
