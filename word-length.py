@@ -1,5 +1,5 @@
 # Authorship/stylometry analysis using word length
-# based on a technique by TC Mendenhall
+# based on a technique by TC Mendenhall (1901)
 
 import urllib2
 import re
@@ -18,6 +18,11 @@ wilkins = open ('data/wilkins.txt')
 pericles = open ('data/pericleshalf.txt')
 bacon = open ('data/bacon.txt')
 oxford = open ('data/oxford.txt')
+sidneyprose = open ('data/sidneyprose.txt')
+sidneyverse = open ('data/sidneyverse.txt')
+sidney = open ('data/sidney.txt')
+
+# add sidney verse and prose!
 
 def strip(text):
 	rawdata = text.read()
@@ -67,20 +72,21 @@ per_wilkins = findper(wilkins)
 per_pericles = findper(pericles)
 per_bacon = findper(bacon)
 per_oxford = findper(oxford)
+per_sverse = findper(sidneyverse)
+per_sprose = findper(sidneyprose)
+per_sidney = findper(sidney)
 
 letters_per_word = []
 authorlist = []
 
-for x in range(9):
+for x in range(8):
 	letters_per_word = letters_per_word + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-authorlist = ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Bacon' for x in range(12)] + ['Earl of Oxford' for x in range(12)] + ['Shakespeare' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Wilkins - Pericles' for x in range(12)] + ['Shakespeare' for x in range(12)]
+authorlist = ['Anon' for x in range(12)] + ['Marlowe' for x in range(12)] + ['Finley' for x in range(12)] + ['Bacon' for x in range(12)] + ['Earl of Oxford' for x in range(12)] + ['Shakespeare' for x in range(12)] + ['Wilkins' for x in range(12)] + ['Sidney' for x in range(12)]
 
-percenttotal = per_leir + per_marlowe + per_finley + per_bacon + per_oxford + per_shakes + per_wilkins + per_pericles + per_shakes
+percenttotal = per_leir + per_marlowe + per_finley + per_bacon + per_oxford + per_shakes + per_wilkins + per_sidney
 
-categories = ['Other Authors' for x in range(72)] + ['Pericles' for x in range(36)]
-
-graphdict = {'letters per word': letters_per_word, 'percent of total words': percenttotal, 'author': authorlist, 'category': categories}
+graphdict = {'letters per word': letters_per_word, 'percent of total words': percenttotal, 'author': authorlist}
 
 # the dataframe
 
@@ -90,7 +96,7 @@ graphdf = pd.DataFrame(graphdict)
 
 sns.set(style="whitegrid")
 
-g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=8, aspect=.9, col="category")
+g = sns.factorplot(x="letters per word", y="percent of total words", hue="author", data=graphdf, capsize=0, errwidth=0, palette="hls", size=8, aspect=.9)
 g.despine(left=True)
 
 plt.show()
