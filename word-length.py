@@ -7,6 +7,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# another data resource:
 # import urllib2
 # urllib2.urlopen("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt")
 
@@ -15,9 +16,10 @@ textlist = ['leir', 'marlowe', 'finley', 'bacon', 'oxford', 'shakes', 'wilkins',
 
 filelist = []
 
+# open files with names in the textlist
+
 for text in textlist:
 	filelist.append(open ('data/' + text + '.txt'))
-
 
 # match all words with 1 or more caps: [A-Z]{2}[A-Z]* (substitute that with a space)
 # then match all words and use that as the data
@@ -32,26 +34,26 @@ def strip(text):
 # numlist is the list of word lengths. lenlist is how many words have a certain length. the second value in this list is how many words are 1 letter long, the third value is how many words are 2 letters long, etc
 # perlist = percent of total words
 
-
 def findper(text):
 
 	wordlist = strip(text)
 	numlist = []
 	lenlist = []
 	perlist = []
+	n = 12
 
 	for word in wordlist:
 		length = len(word)
 		numlist.append(length)
 
-	for x in range(13):
+	for x in range(n + 1):
 		howmany = numlist.count(x)
 		lenlist.append(howmany)
 	
 	del lenlist[0]
 
-	for n in lenlist:
-		divide = float(n) / float(sum(lenlist))
+	for x in lenlist:
+		divide = float(x) / float(sum(lenlist))
 		percent = divide * 100
 		perlist.append(percent)
 	
@@ -61,9 +63,15 @@ def findper(text):
 letters_per_word = []
 percenttotal = []
 authorlist = []
+n = 12
+
+# the next few loops generate the values that will go in the dataframe:
+# 1. the list of authors, each author repeated 12 times to match the 12 "percent of total words" values
+# 2. the list of letters (repeated 12 times)
+# 3. finds the percent of total words for each text in the filelist
 
 for author in authornames:
-	authorlist = authorlist + [author for x in range(12)]
+	authorlist = authorlist + [author for x in range(n)]
 
 for x in range(len(authornames)):
 	letters_per_word = letters_per_word + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
